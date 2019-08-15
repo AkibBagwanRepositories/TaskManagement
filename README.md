@@ -106,3 +106,41 @@ nest g service service_name
 Will help to avoid creating .spec file
 */
 ```
+
+> Install & Uninstall packages by npm
+```js
+npm [ install  | i ] package_name
+/*OR*/
+npm uninstall package_name
+
+```
+
+> Install Postgres and typeOrm
+```js
+npm install @nest/typeorm typeorm pg 
+
+```
+
+```json
+{
+  "start": "ts-node -r tsconfig-paths/register src/main.ts",
+  "start:dev": "tsc-watch -p tsconfig.build.json --onSuccess \"node dist/main.js\"",
+  "start:debug": "tsc-watch -p tsconfig.build.json --onSuccess \"node --inspect-brk dist/main.js\"",
+  "start:prod": "node dist/main.js",
+}
+```
+TO
+```Json
+{
+    "start": "ts-node -r tsconfig-paths/register src/main.ts",
+    "start:dev": "nodemon",
+    "start:debug": "nodemon --config nodemon-debug.json",
+    "prestart:prod": "rimraf dist && npm run buid",
+    "start:prod": "node dist/main.js",
+}
+```
+
+This changes will help to get use nodemon package run
+```cmd
+npm run start:dev
+```
