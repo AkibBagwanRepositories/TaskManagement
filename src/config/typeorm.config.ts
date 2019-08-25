@@ -3,11 +3,12 @@ export const TypeOrmConfig: TypeOrmModuleOptions ={
     type: 'postgres',
     host: 'localhost',
     port: 5432,
-    username: 'postgres',
+    username: 'akib',
     password: 'root',
     database:'taskmanagement',
     entities:[__dirname +'/../**/*.entity.ts'],
-    synchronize:true,
+    synchronize: true,
+    dropSchema: true
 }  
 /**
  * For prodction

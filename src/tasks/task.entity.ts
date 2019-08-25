@@ -1,5 +1,8 @@
-import { BaseEntity, Entity, PrimaryColumn, PrimaryGeneratedColumn, Column } from "typeorm";
+import {OneToOne, BaseEntity,  Entity,  PrimaryColumn,  PrimaryGeneratedColumn,  Column, JoinColumn, OneToMany, ManyToMany, JoinTable} from 'typeorm';
 import { TaskStatus } from "./task-status.enum";
+import { Subtask } from "./subtask.entity";
+import { AttachmentEntity } from './attachment.entity';
+import { TagEntity } from './tag.entity';
 
 @Entity()
 export class Task extends BaseEntity{
@@ -14,4 +17,16 @@ export class Task extends BaseEntity{
     
     @Column()
     status: TaskStatus;
+
+    @OneToOne(type => Subtask)
+    @JoinColumn()
+    sub: Subtask|null;
+
+    @OneToMany(type=>AttachmentEntity,att=>att.task)
+    @JoinColumn()
+    att: AttachmentEntity[];
+
+    @ManyToMany(type=>TagEntity)
+    @JoinTable()
+    tags!:TagEntity[];
 }

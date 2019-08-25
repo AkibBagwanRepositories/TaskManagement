@@ -1,4 +1,6 @@
 import { IsNotEmpty } from "class-validator";
+import { Subtask } from "../subtask.entity";
+import { AttachmentEntity } from "../attachment.entity";
 
 export class CreateTaskDto{
     @IsNotEmpty()
@@ -6,4 +8,8 @@ export class CreateTaskDto{
     
     @IsNotEmpty()
     description: string;
+
+    subtask:Subtask;
+
+    attachments:AttachmentEntity[];
 }
